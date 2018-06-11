@@ -1,0 +1,3 @@
+-module(proplist).
+-author("Navneet Gupta").
+-compile(export_all).
