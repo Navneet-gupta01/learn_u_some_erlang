@@ -4,4 +4,4 @@
 -include("record_hdr.hrl").
 
 included() ->
-  #included{some_field="Some value"}.
+  #included{some_field="Some value"}. %% To use a record we use the symbol #{record_name}{field={updated_value_for_the_field}}

@@ -21,3 +21,7 @@ beach(Temperature) ->
     _ ->
       'avoid beach'
   end.
+
+
+% c("case_of").
+% l = case_of:insert(1, []).

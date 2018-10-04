@@ -7,13 +7,14 @@ heh_fine() ->
         works
     end,
     if 1 =:= 2; 1 =:= 1 ->
-        works
-    end,
+        works2
+    end.
+    % if 1 =:= 2, 1 =:= 1 ->
+    %     fails
+    % end.
     % Shows compiler warning as 1=:=2 andalso 1=:=1 is always false since 1=:=2 is always false.
     % Sp this clause will never be executed. but if u put ,(andalso) with ;(orelse) it wouldnot show any warnings
-    if 1 =:= 2, 1 =:= 1 ->
-        fails
-    end.
+
 
 oh_god(N) ->
     if N =:= 2 -> might_succeed;

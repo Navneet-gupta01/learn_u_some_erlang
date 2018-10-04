@@ -1,7 +1,7 @@
 -module(record2).
 -compile(export_all).
 
--record(user, {id, name, group, age}).
+-record(user, {id, name, group, age}).  %% Defining a record
 
 
 admin_panel(#user{name=Name, group=admin}) ->
