@@ -24,4 +24,5 @@ beach(Temperature) ->
 
 
 % c("case_of").
-% l = case_of:insert(1, []).
+% L = case_of:insert(1, []).
+% L = case_of:insert(2, L).  // will throw error since L(LHS) is binded to [1] and RHS is equal to [2,1]. need to assign it to something else

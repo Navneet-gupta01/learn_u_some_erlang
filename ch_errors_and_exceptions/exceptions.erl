@@ -24,7 +24,6 @@ exits(F) ->
     exit:Exit -> {exit, caught, Exit}
   end.
 
-
 %% Examples::
 % c(exceptions).
 % exceptions:throws(fun() -> throw(thrown) end).
@@ -32,7 +31,6 @@ exits(F) ->
 % exceptions:throws(fun() -> erlang:error(pang) end).
 % exceptions:errors(fun() -> erlang:error("Die!") end).
 % exceptions:exits(fun() -> exit(goodbye) end).
-
 
 sword(1) -> throw(slice);
 sword(2) -> erlang:error(cut_arm);

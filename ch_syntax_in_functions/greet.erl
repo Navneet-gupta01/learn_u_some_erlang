@@ -20,7 +20,7 @@ greet(_, Name) ->
 %        print("Hello, %s!", Name)
 % end
 
-%% Each of these function declarations is called a function clause. Function clauses must be separated by semicolons (;)
-%% and together form a function declaration. A function declaration counts as one larger statement, and it's why the final
-%% function clause ends with a period. It's a "funny" use of tokens to determine workflow, but you'll get used to it.
+% Each of these function declarations is called a function clause. Function clauses must be separated by semicolons (;)
+% and together form a function declaration. A function declaration counts as one larger statement, and it's why the final
+% function clause ends with a period. It's a "funny" use of tokens to determine workflow, but you'll get used to it.
 %% At least you'd better hope so because there's no way out of it!

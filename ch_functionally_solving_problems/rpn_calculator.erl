@@ -2,6 +2,8 @@
 -author("Navneet Gupta").
 -export([calculate/1]).
 
+% string:tokens("10 4 3 + 2 * -", " ", " ") => ["10","4","3","+","2","*","-"]
+% foldl(Fun, Acc0, List) -> Acc1 => Calls Fun(Elem, AccIn) on successive elements A of List, starting with AccIn == Acc0
 calculate(Str) when is_list(Str) ->
   [Res] = lists:foldl(fun calculate/2, [], string:tokens(Str, " ")),
   Res.
@@ -24,5 +26,5 @@ read(N) ->
 
 
 %% Examples
-%% 10 - 5 + 3 * 4
+%% 10 - (5 + 3 * 4)
 % rpn_calculator:calculate("10 5 3 4 * + -").

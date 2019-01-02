@@ -25,3 +25,9 @@ prepareAlarm() ->
       Loop()
     end
   end.
+
+
+% c("alarm").
+% PrepareAlarm = alarm:prepareAlarm().
+% Mr1 = PrepareAlarm("Master Room 1").
+% Mr1().

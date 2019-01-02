@@ -38,3 +38,9 @@ dolphin3() ->
       io:format("Heh, we're smarter than you humans.~n"),
       dolphin3()
   end.
+
+%
+% c("dolphins").
+% dolphins:work().
+% Dolphin = spawn(dolphins, dolphin1, []).
+% Dolphin ! fish
