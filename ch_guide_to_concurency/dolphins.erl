@@ -43,4 +43,4 @@ dolphin3() ->
 % c("dolphins").
 % dolphins:work().
 % Dolphin = spawn(dolphins, dolphin1, []).
-% Dolphin ! fish
+% Dolphin ! fish -- Only first message sent will work after that process will end since its not in loop

@@ -28,11 +28,11 @@ fridge1(FoodItems) ->
         false ->
           From ! {self(), not_found},
           fridge1(FoodItems)
-        end;
+      end;
     terminate ->
       io:format("Fridge is getting Old. Will be Down in some Time.~n"),
       ok
-    end.
+  end.
 
 store(PID, Food) ->
   PID ! {self() , {store, Food}},
@@ -47,7 +47,7 @@ take(PID, Food) ->
   end.
 
 start(FoodList) ->
-  spawn(?MODULE, fridge2, [FoodList]).
+  spawn(?MODULE, fridge1, [FoodList]).
 
 store2(PID, Food) ->
   PID ! {self() , {store, Food}},
@@ -64,3 +64,25 @@ take2(PID, Food) ->
   after 3000 ->
     timeout
   end.
+
+
+% c(kitchen).
+% Kitchen = spawn(kitchen, fridge1, [[]]).
+% Kitchen ! {self(), {store, milk}}.
+% Kitchen ! {self(), {take, bread}}.
+% flush().
+% f().
+% Pid = spawn(kitchen, fridge1, [[baking_soda]]).
+% kitchen:store2(Pid, potato).
+% kitchen:store2(Pid, bread).
+% kitchen:store2(Pid, egg).
+% kitchen:take2(Pid, egg2).
+% kitchen:take2(Pid, potato).
+% f().
+% Pid = kitchen:start([baking_soda]).
+% kitchen:store2(Pid, potato).
+% kitchen:store2(Pid, bread).
+% kitchen:store2(Pid, egg).
+% kitchen:take2(Pid, egg2).
+% kitchen:take2(Pid, potato).
+% kitchen:take2(pid(0,250,0), potato).
