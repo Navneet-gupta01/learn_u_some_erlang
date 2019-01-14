@@ -117,7 +117,7 @@ restarter2() ->
 
 judge3(Band, Album) ->
   Ref = make_ref(),
-  critic ! {self(), Ref, {Band, Album}},
+  critic2 ! {self(), Ref, {Band, Album}},
   receive
     {Ref,  Criticism} -> Criticism
     after 2000 ->
@@ -170,3 +170,10 @@ critic2() ->
 % Critic1 = erlang:whereis(critic).
 % exit(Critic1, solar_storm).
 % linkmon:judge2(Critic, "Genesis", "A trick of the Tail Recursion").
+
+ % c(linkmon).
+ % linnkmon:start_critic3().
+ % linnkmon:judge3("The Doors", "Light my Firewall").
+ % Critic2 = erlang:whereis(critic2).
+ % exit(Critic2, solar_storm).
+ % linkmon:judge3("Genesis", "A trick of the Tail Recursion").
