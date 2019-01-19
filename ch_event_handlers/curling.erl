@@ -3,6 +3,7 @@
 -export([start_link/2, add_points/3, next_round/1, set_teams/3, join_feed/2, leave_feed/2]).
 -import(curling_scoreboard, [init/1, handle_event/2, handle_call/2, handle_info/2, code_change/3,
 terminate/2]).
+-import(curling_feed,[]).
 
 
 start_link(TeamA, TeamB) ->
@@ -38,3 +39,13 @@ leave_feed(Pid, HandlerId) ->
 % {ok, Pid} = curling:start_link("Pirates", "Scotsmen").
 % curling:add_points(Pid, "Scotsmen", 2).
 % curling:next_round(Pid).
+
+
+% c(curling), c(curling_feed).
+% {ok, Pid} = curling:start_link("Saskatchewan Roughriders", "Ottawa Roughriders").
+% HandlerId = curling:join_feed(Pid, self()).
+% curling:add_points(Pid, "Saskatchewan Roughriders", 2).
+% flush().
+% curling:leave_feed(Pid, HandlerId).
+% curling:next_round(Pid).
+% flush().
