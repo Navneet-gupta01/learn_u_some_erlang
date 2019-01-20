@@ -1,14 +1,17 @@
--module(curling).
+-module(curling0).
 -author("Navneet Gupta").
--export([start_link/2, add_points/3, next_round/1, set_teams/3, join_feed/2, leave_feed/2]).
+-export([start_link/2, add_points/3, next_round/1, set_teams/3, join_feed/2, leave_feed/2, game_info/1]).
 -import(curling_scoreboard, [init/1, handle_event/2, handle_call/2, handle_info/2, code_change/3,
 terminate/2]).
 -import(curling_feed,[]).
+-import(curling_accumulator, []).
 
 
 start_link(TeamA, TeamB) ->
   {ok, Pid} = gen_event:start_link(),
   gen_event:add_handler(Pid, curling_scoreboard, []),
+  %% Start the stats accumulator to return game state if some of subscriber joins late in the game.
+  gen_event:add_handler(Pid, curling_accumulator, []),
   send_notification(Pid, {set_team, TeamA, TeamB}),
   {ok, Pid}.
 
@@ -24,6 +27,10 @@ set_teams(Pid, TeamA, TeamB) ->
 
 send_notification(Pid, Msg) ->
   gen_event:notify(Pid, Msg).
+
+%% Returns the current game state.
+game_info(Pid) ->
+  gen_event:call(Pid, curling_accumulator, game_data).
 
 %% Subscribes the pid ToPid to the event feed.
 %% The specific event handler for the newsfeed is
@@ -41,19 +48,10 @@ join_feed(Pid, ToPid) ->
 leave_feed(Pid, HandlerId) ->
   gen_event:delete_handler(Pid, HandlerId, leave_feed).
 
-% c(curling_scoreboard_hw).
-% c(curling_scoreboard).
-% c(curling).
-% {ok, Pid} = curling:start_link("Pirates", "Scotsmen").
-% curling:add_points(Pid, "Scotsmen", 2).
-% curling:next_round(Pid).
-
-
-% c(curling), c(curling_feed).
-% {ok, Pid} = curling:start_link("Saskatchewan Roughriders", "Ottawa Roughriders").
-% HandlerId = curling:join_feed(Pid, self()).
-% curling:add_points(Pid, "Saskatchewan Roughriders", 2).
-% flush().
-% curling:leave_feed(Pid, HandlerId).
-% curling:next_round(Pid).
-% flush().
+% c(curling0), c(curling_accumulator).
+% {ok, Pid} = curling0:start_link("Pigeons", "Eagles").
+% curling0:add_points(Pid, "Pigeons", 2).
+% curling0:next_round(Pid).
+% curling0:add_points(Pid, "Eagles", 3).
+% curling0:next_round(Pid).
+% curling0:game_info(Pid).
