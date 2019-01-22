@@ -35,8 +35,22 @@ init({RestartStrategy, MaxRestart, MaxTime}) ->
         transient, 1000, worker, [musicians]}
   ]}}.
 
-
 % c(band_supervisor).
 % band_supervisor:start_link(lenient).
 % band_supervisor:start_link(angry).
 % band_supervisor:start_link(jerk).
+
+
+% Dynamic_supervision
+% =========================
+% c(band_supervisor).
+% band_supervisor:start_link(lenient).
+% supervisor:which_children(band_supervisor).
+% supervisor:terminate_child(band_supervisor, drum).
+% supervisor:terminate_child(band_supervisor, singer).
+% supervisor:restart_child(band_supervisor, singer).
+% supervisor:count_children(band_supervisor).
+% supervisor:delete_child(band_supervisor, drum).
+% supervisor:delete_child(band_supervisor, drum).
+% supervisor:restart_child(band_supervisor, drum).
+% supervisor:count_children(band_supervisor).
