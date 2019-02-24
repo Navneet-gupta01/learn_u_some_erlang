@@ -2,9 +2,13 @@
 -author("Navneet Gupta").
 -export([greet_and_add_two/1]).
 
-greet_and_add_two(X) ->
+greet_and_add_two(X) when is_integer(X) ->
   hello(),
-  add(X,2).
+  add(X,2);
+
+greet_and_add_two(_) ->
+  hello(),
+  io:format("Invalid Input ! Please enter Integer only ~n").
 
 hello() ->
   io:format("Hello, world!~n").
